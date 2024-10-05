@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Farm Risk Assessment</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+            margin: 20px;
+        }
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .input-group input, .input-group select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Farm Drought Risk Assessment</h1>
+        <p>Assess potential drought risk and get mitigation suggestions</p>
+    </header>
+
+    <section>
+        <h2>Enter Farm Data</h2>
+        <form id="farm-data-form">
+            <div class="input-group">
+                <label for="location">Farm Location (Latitude, Longitude):</label>
+                <input type="text" id="location" name="location" placeholder="e.g. 34.0522, -118.2437" required>
+            </div>
+            <div class="input-group">
+                <label for="crop-type">Crop Type:</label>
+                <select id="crop-type" name="cropType" required>
+                    <option value="">Select Crop</option>
+                    <option value="corn">Corn</option>
+                    <option value="wheat">Wheat</option>
+                    <option value="soybeans">Soybeans</option>
+                    <option value="cotton">Cotton</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="farm-size">Farm Size (in hectares):</label>
+                <input type="number" id="farm-size" name="farmSize" placeholder="e.g. 100" required>
+            </div>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </section>
+
+    <section id="results" style="display: none;">
+        <h2>Drought Risk Analysis</h2>
+        <div id="analysis-results">
+            <!-- Results will be populated here -->
+        </div>
+        <button class="btn" onclick="resetForm()">Start Over</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 FarmTech Solutions</p>
+    </footer>
+
+    <script>
+        document.getElementById('farm-data-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const location = document.getElementById('location').value;
+            const cropType = document.getElementById('crop-type').value;
+            const farmSize = document.getElementById('farm-size').value;
+            
+            // Here you would call your backend or Google Earth Engine service to get data
+            // Simulate the data retrieval with a placeholder result
+            const droughtRisk = 'Moderate'; // Placeholder for actual risk assessment
+            const mitigation = 'Increase irrigation and monitor soil moisture levels.';
+            
+            // Display results
+            const resultsSection = document.getElementById('results');
+            const analysisResults = document.getElementById('analysis-results');
+            analysisResults.innerHTML = `
+                <p><strong>Location:</strong> ${location}</p>
+                <p><strong>Crop Type:</strong> ${cropType}</p>
+                <p><strong>Farm Size:</strong> ${farmSize} hectares</p>
+                <p><strong>Drought Risk:</strong> ${droughtRisk}</p>
+                <p><strong>Mitigation Suggestion:</strong> ${mitigation}</p>
+            `;
+            resultsSection.style.display = 'block';
+        });
+
+        function resetForm() {
+            document.getElementById('farm-data-form').reset();
+            document.getElementById('results').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
