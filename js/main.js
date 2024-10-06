@@ -1,5 +1,6 @@
 const form = document.getElementById('farm-data-form');
 const formsButton = document.getElementById('submit-form');
+const loader = document.getElementById('loader');
 
 // Function to get GPS coordinates
 function getCoordinates(callback) {
@@ -18,7 +19,10 @@ function getCoordinates(callback) {
 
 formsButton.addEventListener('click', function(event) {
     event.preventDefault();
-    
+
+    // Show the loader
+    loader.style.display = 'block';
+
     // Retrieve GPS coordinates
     getCoordinates(function(latitude, longitude) {
         const cropType = document.getElementById('crop-type').value.toUpperCase();
@@ -46,6 +50,9 @@ formsButton.addEventListener('click', function(event) {
         })
         .then(response => response.json())
         .then(data => {
+            // Hide the loader
+            loader.style.display = 'none';
+
             // Display results
             const resultsSection = document.getElementById('results');
             const analysisResults = document.getElementById('analysis-results');
@@ -61,7 +68,11 @@ formsButton.addEventListener('click', function(event) {
             // Scroll to the results section smoothly
             resultsSection.scrollIntoView({ behavior: 'smooth' });
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => {
+            // Hide the loader on error
+            loader.style.display = 'none';
+            console.error('Error:', error);
+        });
     });
 });
 
