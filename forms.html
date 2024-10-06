@@ -60,7 +60,7 @@
 <body>
 
     <header>
-        <h1>Farm Drought Risk Assessment</h1>
+        <h1>Risk of Crop Yield Loss Risk Due</h1>
         <p>Assess potential drought risk and get mitigation suggestions</p>
     </header>
 
@@ -82,8 +82,28 @@
                 </select>
             </div>
             <div class="input-group">
-                <label for="farm-size">Farm Size (in hectares):</label>
-                <input type="number" id="farm-size" name="farmSize" placeholder="e.g. 100" required>
+                <label for="irrigation">Irrigation (yes/no):</label>
+                <select id="irrigation" name="irrigation" required>
+                    <option value="">Select Option</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="planting-period">Planting Period:</label>
+                <select id="planting-period" name="plantingPeriod" required>
+                    <option value="">Select Period</option>
+                    <option value="BEFORE">Before</option>
+                    <option value="AFTER">After</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="existing-culture">Existing Culture (yes/no):</label>
+                <select id="existing-culture" name="existingCulture" required>
+                    <option value="">Select Option</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
             </div>
             <button type="submit" class="btn">Submit</button>
         </form>
@@ -104,26 +124,48 @@
     <script>
         document.getElementById('farm-data-form').addEventListener('submit', function(event) {
             event.preventDefault();
-            const location = document.getElementById('location').value;
-            const cropType = document.getElementById('crop-type').value;
-            const farmSize = document.getElementById('farm-size').value;
             
-            // Here you would call your backend or Google Earth Engine service to get data
-            // Simulate the data retrieval with a placeholder result
-            const droughtRisk = 'Moderate'; // Placeholder for actual risk assessment
-            const mitigation = 'Increase irrigation and monitor soil moisture levels.';
-            
-            // Display results
-            const resultsSection = document.getElementById('results');
-            const analysisResults = document.getElementById('analysis-results');
-            analysisResults.innerHTML = `
-                <p><strong>Location:</strong> ${location}</p>
-                <p><strong>Crop Type:</strong> ${cropType}</p>
-                <p><strong>Farm Size:</strong> ${farmSize} hectares</p>
-                <p><strong>Drought Risk:</strong> ${droughtRisk}</p>
-                <p><strong>Mitigation Suggestion:</strong> ${mitigation}</p>
-            `;
-            resultsSection.style.display = 'block';
+            const location = document.getElementById('location').value.split(',');
+            const latitude = parseFloat(location[0].trim());
+            const longitude = parseFloat(location[1].trim());
+            const cropType = document.getElementById('crop-type').value.toUpperCase();
+            const irrigation = document.getElementById('irrigation').value;
+            const plantingPeriod = document.getElementById('planting-period').value;
+            const existingCulture = document.getElementById('existing-culture').value;
+
+            const requestData = {
+                culture: cropType,
+                latitude: latitude,
+                longitude: longitude,
+                radio_km: 1,
+                irrigation: irrigation,
+                planting_period: plantingPeriod,
+                existing_culture: existingCulture
+            };
+
+            // Perform REST API call
+            fetch('http://localhost:5000/dry-analysis', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display results
+                const resultsSection = document.getElementById('results');
+                const analysisResults = document.getElementById('analysis-results');
+                analysisResults.innerHTML = `
+                    <p><strong>ndmi_medium (debug):</strong> ${data.ndmi_medium}</p>
+                    <p><strong>Bad Water Balance Susceptibility:</strong> ${data.sb}</p>
+                    <p><strong>Moisture Deficit Susceptibility:</strong> ${data.su}</p>
+                    <p><strong>Culture Susceptibility:</strong> ${data.susceptibility}</p>
+                    <p><strong>wbi_medium (debug):</strong> ${data.wbi_medium}</p>
+                `;
+                resultsSection.style.display = 'block';
+            })
+            .catch(error => console.error('Error:', error));
         });
 
         function resetForm() {
