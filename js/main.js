@@ -25,7 +25,7 @@ formsButton.addEventListener('click', function(event) {
 
     // Retrieve GPS coordinates
     getCoordinates(function(latitude, longitude) {
-        const cropType = document.getElementById('crop-type').value.toUpperCase();
+        const cropType = document.getElementById('crop-type').value;
         const isIrrigated = document.querySelector('input[name="irrigation"]:checked').value;
         const plantingPeriod = document.querySelector('input[name="plantingPeriod"]:checked').value;
         const existingCrops = document.querySelector('input[name="existingCrops"]:checked').value;
