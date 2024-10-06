@@ -1,0 +1,108 @@
+/* General reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #2E1D27; /* Light sandy background */
+    color: #4A4A4A; /* Dark gray text for better contrast */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 10px;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    background-color: #F1E0B8; /* Soft beige background */
+    padding: 20px;
+    border: 2px solid #B48B0A; /* Earthy yellow border */
+    border-radius: 0px; /* Square borders */
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.cta, .features, .intro {
+    margin-bottom: 30px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+#ctaButton {
+    margin-top: 20px;
+}
+
+header {
+    background-color: #E5BD43; /* Vibrant earthy tone */
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 24px;
+    color: #2E1D27; /* Dark text color */
+}
+
+header p {
+    color: #2E1D27; /* Dark text color */
+}
+
+main section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 20px;
+    color: #D65125; /* Strong orange for headings */
+    margin-bottom: 10px;
+}
+
+p, ul {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+ul {
+    list-style-type: none;
+}
+
+ul li::before {
+    content: "✔";
+    color: #D65125; /* Strong orange for bullet points */
+    padding-right: 5px;
+}
+
+a {
+    display: inline-block; /* Make the link behave like a button */
+    background-color: #BA3508; /* Rich red-orange for CTA */
+    color: white;
+    text-decoration: none; /* Remove underline */
+    padding: 15px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 0px; /* Square button */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+a:hover {
+    background-color: #E5BD43; /* Lighter hover effect */
+    color: #2E1D27;
+}
+
+footer {
+    margin-top: 20px;
+}
+
+footer p {
+    font-size: 14px;
+    color: #4A4A4A; /* Dark gray for footer text */
+}
