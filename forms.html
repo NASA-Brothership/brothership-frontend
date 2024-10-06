@@ -5,174 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Farm Risk Assessment</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 0;
-            text-align: center;
-        }
-        section {
-            padding: 20px;
-            margin: 20px;
-        }
-        footer {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-        .btn {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .btn:hover {
-            background-color: #45a049;
-        }
-        .input-group {
-            margin-bottom: 15px;
-        }
-        .input-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .input-group input, .input-group select {
-            width: 100%;
-            padding: 8px;
-            box-sizing: border-box;
-        }
-    </style>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Link to external CSS -->
 </head>
 <body>
 
-    <header>
-        <h1>Risk of Crop Yield Loss Risk Due</h1>
-        <p>Assess potential drought risk and get mitigation suggestions</p>
-    </header>
+    <div class="container">
+        <header>
+            <h1>Farm Drought Risk Assessment</h1>
+            <p>Assess potential drought risk and get mitigation suggestions</p>
+        </header>
 
-    <section>
-        <h2>Enter Farm Data</h2>
-        <form id="farm-data-form">
-            <div class="input-group">
-                <label for="location">Farm Location (Latitude, Longitude):</label>
-                <input type="text" id="location" name="location" placeholder="e.g. 34.0522, -118.2437" required>
-            </div>
-            <div class="input-group">
-                <label for="crop-type">Crop Type:</label>
-                <select id="crop-type" name="cropType" required>
-                    <option value="">Select Crop</option>
-                    <option value="corn">Corn</option>
-                    <option value="wheat">Wheat</option>
-                    <option value="soybeans">Soybeans</option>
-                    <option value="cotton">Cotton</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label for="irrigation">Irrigation (yes/no):</label>
-                <select id="irrigation" name="irrigation" required>
-                    <option value="">Select Option</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label for="planting-period">Planting Period:</label>
-                <select id="planting-period" name="plantingPeriod" required>
-                    <option value="">Select Period</option>
-                    <option value="BEFORE">Before</option>
-                    <option value="AFTER">After</option>
-                </select>
-            </div>
-            <div class="input-group">
-                <label for="existing-culture">Existing Culture (yes/no):</label>
-                <select id="existing-culture" name="existingCulture" required>
-                    <option value="">Select Option</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
-                </select>
-            </div>
-            <button type="submit" class="btn">Submit</button>
-        </form>
-    </section>
+        <main>
+            <section class="intro">
+                <h2>Enter Farm Data</h2>
+                <form id="farm-data-form">
+                    <div class="input-group">
+                        <label for="crop-type">Crop Type:</label>
+                        <select id="crop-type" name="cropType" required>
+                            <option value="">Select Crop</option>
+                            <option value="corn">Corn</option>
+                            <option value="wheat">Wheat</option>
+                            <option value="soybeans">Soybeans</option>
+                            <option value="cotton">Cotton</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="irrigation">Irrigation (yes/no):</label>
+                        <div class="radio-group">
+                            <input type="radio" id="irrigation-yes" name="irrigation" value="yes" required>
+                            <label for="irrigation-yes">Yes</label>
+                            <input type="radio" id="irrigation-no" name="irrigation" value="no" required>
+                            <label for="irrigation-no">No</label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="planting-period">Planting Period:</label>
+                        <div class="radio-group">
+                            <input type="radio" id="planting-before" name="plantingPeriod" value="BEFORE" required>
+                            <label for="planting-before">Before</label>
+                            <input type="radio" id="planting-after" name="plantingPeriod" value="AFTER" required>
+                            <label for="planting-after">After</label>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="existing-crops">Existing Crops (yes/no):</label>
+                        <div class="radio-group">
+                            <input type="radio" id="existing-yes" name="existingCrops" value="yes" required>
+                            <label for="existing-yes">Yes</label>
+                            <input type="radio" id="existing-no" name="existingCrops" value="no" required>
+                            <label for="existing-no">No</label>
+                        </div>
+                    </div>
+                    <a href="#" class="btn" id="submit-form">Submit</a>
+                </form>
+            </section>
 
-    <section id="results" style="display: none;">
-        <h2>Drought Risk Analysis</h2>
-        <div id="analysis-results">
-            <!-- Results will be populated here -->
-        </div>
-        <button class="btn" onclick="resetForm()">Start Over</button>
-    </section>
+            <section id="results" style="display: none;">
+                <h2>Drought Risk Analysis</h2>
+                <div id="analysis-results">
+                    <!-- Results will be populated here -->
+                </div>
+                <a href="#" class="btn" onclick="resetForm()">Start Over</a>
+            </section>
+        </main>
 
-    <footer>
-        <p>&copy; 2024 FarmTech Solutions</p>
-    </footer>
+        <footer>
+            <p>&copy; 2024 Brothership Solutions</p>
+        </footer>
+    </div>
 
-    <script>
-        document.getElementById('farm-data-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            const location = document.getElementById('location').value.split(',');
-            const latitude = parseFloat(location[0].trim());
-            const longitude = parseFloat(location[1].trim());
-            const cropType = document.getElementById('crop-type').value.toUpperCase();
-            const irrigation = document.getElementById('irrigation').value;
-            const plantingPeriod = document.getElementById('planting-period').value;
-            const existingCulture = document.getElementById('existing-culture').value;
-
-            const requestData = {
-                culture: cropType,
-                latitude: latitude,
-                longitude: longitude,
-                radio_km: 1,
-                irrigation: irrigation,
-                planting_period: plantingPeriod,
-                existing_culture: existingCulture
-            };
-
-            // Perform REST API call
-            fetch('http://localhost:5000/dry-analysis', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(requestData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Display results
-                const resultsSection = document.getElementById('results');
-                const analysisResults = document.getElementById('analysis-results');
-                analysisResults.innerHTML = `
-                    <p><strong>ndmi_medium (debug):</strong> ${data.ndmi_medium}</p>
-                    <p><strong>Bad Water Balance Susceptibility:</strong> ${data.sb}</p>
-                    <p><strong>Moisture Deficit Susceptibility:</strong> ${data.su}</p>
-                    <p><strong>Culture Susceptibility:</strong> ${data.susceptibility}</p>
-                    <p><strong>wbi_medium (debug):</strong> ${data.wbi_medium}</p>
-                `;
-                resultsSection.style.display = 'block';
-            })
-            .catch(error => console.error('Error:', error));
-        });
-
-        function resetForm() {
-            document.getElementById('farm-data-form').reset();
-            document.getElementById('results').style.display = 'none';
-        }
-    </script>
+    <!-- Link to external JavaScript file -->
+    <script src="js/main.js"></script>
 
 </body>
 </html>

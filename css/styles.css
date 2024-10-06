@@ -36,10 +36,6 @@ body {
     font-weight: bold;
 }
 
-#ctaButton {
-    margin-top: 20px;
-}
-
 header {
     background-color: #E5BD43; /* Vibrant earthy tone */
     padding: 15px;
@@ -82,6 +78,7 @@ ul li::before {
 
 /* Button and Links */
 a, .btn {
+    margin-top: 20px;
     display: inline-block; /* Make the link behave like a button */
     background-color: #BA3508; /* Rich red-orange for CTA */
     color: white;

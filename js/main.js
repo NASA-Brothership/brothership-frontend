@@ -37,7 +37,7 @@ formsButton.addEventListener('click', function(event) {
         };
 
         // Perform REST API call
-        fetch('http://localhost:5000/drought-analysis', {
+        fetch('http://localhost:8000/drought-analysis', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
