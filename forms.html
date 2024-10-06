@@ -60,7 +60,7 @@
 <body>
 
     <header>
-        <h1>Farm Drought Risk Assessment</h1>
+        <h1>Risk of Crop Yield Loss Risk Due</h1>
         <p>Assess potential drought risk and get mitigation suggestions</p>
     </header>
 
@@ -161,11 +161,11 @@
                 const resultsSection = document.getElementById('results');
                 const analysisResults = document.getElementById('analysis-results');
                 analysisResults.innerHTML = `
-                    <p><strong>NDMI Medium:</strong> ${data.ndmi_medium}</p>
-                    <p><strong>SB:</strong> ${data.sb}</p>
-                    <p><strong>SU:</strong> ${data.su}</p>
-                    <p><strong>Susceptibility:</strong> ${data.susceptibility}</p>
-                    <p><strong>WBI Medium:</strong> ${data.wbi_medium}</p>
+                    <p><strong>ndmi_medium (debug):</strong> ${data.ndmi_medium}</p>
+                    <p><strong>Bad Water Balance Susceptibility:</strong> ${data.sb}</p>
+                    <p><strong>Moisture Deficit Susceptibility:</strong> ${data.su}</p>
+                    <p><strong>Culture Susceptibility:</strong> ${data.susceptibility}</p>
+                    <p><strong>wbi_medium (debug):</strong> ${data.wbi_medium}</p>
                 `;
                 resultsSection.style.display = 'block';
             })
