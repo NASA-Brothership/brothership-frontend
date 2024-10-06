@@ -57,11 +57,7 @@ formsButton.addEventListener('click', function(event) {
             const resultsSection = document.getElementById('results');
             const analysisResults = document.getElementById('analysis-results');
             analysisResults.innerHTML = `
-                <p><strong>ndmi_medium (debug):</strong> ${data.ndmi_medium}</p>
-                <p><strong>Bad Water Balance Susceptibility:</strong> ${data.sb}</p>
-                <p><strong>Moisture Deficit Susceptibility:</strong> ${data.su}</p>
-                <p><strong>Crop Susceptibility:</strong> ${data.susceptibility}</p>
-                <p><strong>wbi_medium (debug):</strong> ${data.wbi_medium}</p>
+                <p><strong>Drought risk:</strong> ${data.drought_risk}</p>
             `;
             resultsSection.style.display = 'block';
 
