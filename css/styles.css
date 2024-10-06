@@ -7,8 +7,8 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #2E1D27; /* Light sandy background */
-    color: #4A4A4A; /* Dark gray text for better contrast */
+    background-color: #2E1D27; /* Dark background */
+    color: #F1E0B8; /* Light beige text */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,6 +20,7 @@ body {
     width: 100%;
     max-width: 600px;
     background-color: #F1E0B8; /* Soft beige background */
+    color: #4A4A4A;
     padding: 20px;
     border: 2px solid #B48B0A; /* Earthy yellow border */
     border-radius: 0px; /* Square borders */
@@ -79,7 +80,8 @@ ul li::before {
     padding-right: 5px;
 }
 
-a {
+/* Button and Links */
+a, .btn {
     display: inline-block; /* Make the link behave like a button */
     background-color: #BA3508; /* Rich red-orange for CTA */
     color: white;
@@ -93,11 +95,71 @@ a {
     transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
 
-a:hover {
+a:hover, .btn:hover {
     background-color: #E5BD43; /* Lighter hover effect */
     color: #2E1D27;
 }
 
+/* Form styling */
+form {
+    margin-top: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #2E1D27;
+}
+
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #B48B0A; /* Earthy yellow border */
+    border-radius: 0px; /* Square inputs */
+    background-color: #fff;
+}
+
+.input-group input:focus, .input-group select:focus {
+    outline: none;
+    border-color: #D65125;
+}
+
+/* Radio Button Styling */
+.radio-group {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+
+.radio-group input[type="radio"] {
+    display: none; /* Hide the default radio button */
+}
+
+.radio-group label {
+    padding: 10px;
+    background-color: #fff;
+    border: 2px solid #B48B0A;
+    border-radius: 4px;
+    width: 48%;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.radio-group input[type="radio"]:checked + label {
+    background-color: #E5BD43;
+    color: #2E1D27;
+    border-color: #D65125;
+}
+
+/* Footer */
 footer {
     margin-top: 20px;
 }
@@ -105,4 +167,9 @@ footer {
 footer p {
     font-size: 14px;
     color: #4A4A4A; /* Dark gray for footer text */
+}
+
+/* Results Section */
+#results {
+    margin-top: 20px;
 }
