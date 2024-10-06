@@ -2,6 +2,36 @@ const form = document.getElementById('farm-data-form');
 const formsButton = document.getElementById('submit-form');
 const loader = document.getElementById('loader');
 
+document.addEventListener('DOMContentLoaded', function() {
+    const cropTypeSelect = document.getElementById('crop-type');
+
+    // Fetch the list of plants from the backend
+    fetch('http://localhost:8000/plants')
+        .then(response => response.json())
+        .then(plants => {
+            // Clear existing options
+            cropTypeSelect.innerHTML = '';
+            
+            // Add default option
+            const defaultOption = document.createElement('option');
+            defaultOption.value = '';
+            defaultOption.textContent = 'Select Crop';
+            cropTypeSelect.appendChild(defaultOption);
+
+            // Populate the select input with the list of plants
+            plants.forEach(plant => {
+                const option = document.createElement('option');
+                option.value = plant;  // Use lowercase value
+                option.textContent = plant;
+                cropTypeSelect.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching plant list:', error);
+            cropTypeSelect.innerHTML = '<option value="">Error loading crops</option>';
+        });
+});
+
 // Function to get GPS coordinates
 function getCoordinates(callback) {
     if (navigator.geolocation) {
@@ -25,7 +55,7 @@ formsButton.addEventListener('click', function(event) {
 
     // Retrieve GPS coordinates
     getCoordinates(function(latitude, longitude) {
-        const cropType = document.getElementById('crop-type').value.toUpperCase();
+        const cropType = document.getElementById('crop-type').value;
         const isIrrigated = document.querySelector('input[name="irrigation"]:checked').value;
         const plantingPeriod = document.querySelector('input[name="plantingPeriod"]:checked').value;
         const existingCrops = document.querySelector('input[name="existingCrops"]:checked').value;
