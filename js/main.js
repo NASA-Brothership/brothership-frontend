@@ -53,10 +53,13 @@ formsButton.addEventListener('click', function(event) {
                 <p><strong>ndmi_medium (debug):</strong> ${data.ndmi_medium}</p>
                 <p><strong>Bad Water Balance Susceptibility:</strong> ${data.sb}</p>
                 <p><strong>Moisture Deficit Susceptibility:</strong> ${data.su}</p>
-                <p><strong>Culture Susceptibility:</strong> ${data.susceptibility}</p>
+                <p><strong>Crop Susceptibility:</strong> ${data.susceptibility}</p>
                 <p><strong>wbi_medium (debug):</strong> ${data.wbi_medium}</p>
             `;
             resultsSection.style.display = 'block';
+
+            // Scroll to the results section smoothly
+            resultsSection.scrollIntoView({ behavior: 'smooth' });
         })
         .catch(error => console.error('Error:', error));
     });
