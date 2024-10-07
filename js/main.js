@@ -110,7 +110,6 @@ formsButton.addEventListener('click', function(event) {
             const resultsSection = document.getElementById('results');
             const analysisResults = document.getElementById('analysis-results');
             analysisResults.innerHTML = `
-                <p><strong>Drought risk:</strong> ${data.drought_risk}</p>
                 <p><strong>Sum Precipitation (Next 14 weeks):</strong> ${data.precipitation_mean.toFixed(2)} mm</p>
                 <p><strong>Cultural Susceptibility (sc):</strong> ${data.sc}</p>
                 <p><strong>Moisture Susceptibility (su):</strong> ${data.su}</p>
