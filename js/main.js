@@ -82,15 +82,21 @@ formsButton.addEventListener('click', function(event) {
         .then(data => {
             // Hide the loader
             loader.style.display = 'none';
-
+        
             // Display results
             const resultsSection = document.getElementById('results');
             const analysisResults = document.getElementById('analysis-results');
             analysisResults.innerHTML = `
                 <p><strong>Drought risk:</strong> ${data.drought_risk}</p>
+                <p><strong>Sum Precipitation (Next 14 weeks):</strong> ${data.precipitation_mean.toFixed(2)} mm</p>
+                <p><strong>Cultural Susceptibility (sc):</strong> ${data.sc}</p>
+                <p><strong>Moisture Susceptibility (su):</strong> ${data.su}</p>
+                <p><strong>Hydro Balance Susceptibility (sb):</strong> ${data.sb}</p>
+                <p><strong>Precipitation Prediction Susceptibility (spt):</strong> ${data.spt}</p>
+                <p><strong>Recommendation:</strong> ${data.recomentation.replace(/_/g, ' ')}</p>
             `;
             resultsSection.style.display = 'block';
-
+        
             // Scroll to the results section smoothly
             resultsSection.scrollIntoView({ behavior: 'smooth' });
         })
